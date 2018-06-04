@@ -56,6 +56,11 @@ public class StealthCam {
     private Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
             delegate.onTaken(data);
+            if(camera!=null){
+                camera.stopPreview();
+                camera.setPreviewCallback(null);
+                camera.release();
+            }
         }
     };
 }
